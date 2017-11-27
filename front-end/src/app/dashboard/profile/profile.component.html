@@ -1,0 +1,66 @@
+<div class="center-div" style="width:40%;">
+  <div class="row">
+  <ul class="collection ">
+    <li class="collection-item  row card-panel  grey lighten-4">
+      <a href="#!" (click)="backClicked()"><i class="material-icons col">arrow_back</i></a> <span style="margin-left:2%">Moi</span>
+    </li>
+
+    <li class="collection-item card-panel">
+      <img src="http://lorempixel.com/150/150/people/5" alt="" class="circle" style="margin-left: 30%">
+      <br>
+      <b><div class="title grey-text darken-1" style="margin-left:43%;font-size:15">{{localUser?.username}}</div></b>
+    </li>
+
+    <li class="collection-item row card-panel grey lighten-4 ">
+      <a class="waves-effect waves-light  modal-trigger" > <i class="material-icons col s1">account_box</i>
+
+        <b> <span class="title  black-text" style="margin-top: -200px; margin-left:40px;">Username</span></b><br>
+        <span class="title  grey-text darken-1 " style="margin-top: -200px; margin-left:40px;">{{localUser?.username}}</span>
+      </a>
+
+    </li>
+
+    <li class="collection-item ">
+
+      <a class="waves-effect waves-light modal-trigger"  (click)="openModal()"  href="#modal1"><i class="material-icons col s1">email</i>
+
+        <b> <span class="title  black-text" style="margin-top: -200px; margin-left:40px;">Email</span></b><br>
+        <span class="title  grey-text darken-1 " style="margin-top: -200px; margin-left:60px;">{{localUser?.email}}</span>
+      </a>
+    </li>
+
+
+
+    <li class="collection-item card-panel  grey lighten-4">
+      <a class="waves-effect waves-light  modal-trigger" ><i class="material-icons col s1">security</i>
+
+        <b> <span class="title  black-text" style="margin-top: -200px; margin-left:40px;">Change your password</span></b><br>
+        <span class="title  grey-text darken-1 " style="margin-top: -200px; margin-left:17%;">******</span>
+      </a>
+    </li>
+
+
+  </ul>
+
+  </div>
+</div>
+
+
+
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+  <div class="modal-content">
+    <div class="input-field"   style="margin-top:7%;" >
+      <i class="material-icons prefix">account_circle</i>
+      <input id="user_email" type="text" class="validate" [ngModel]="localUser?.email" (ngModelChange)="localUser.email = $event">
+      <label for="user_email">Email</label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
+    <a class="  waves-effect waves-green btn-flat" (click)="setuserEmail()">Submit</a>
+  </div>
+</div>
+
+

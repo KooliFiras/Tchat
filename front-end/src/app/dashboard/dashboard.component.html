@@ -1,0 +1,64 @@
+<div class="center-div" style="margin-top:-10%;width:40%;">
+  <div class="row ">
+    <img src="http://lorempixel.com/500/500/people/5" style=" margin-left: 85%; float:right; width:50px;border-radius:60%;margin-bottom: -15% " (click)="showProfile()"/>
+  <nav  style=" float: left; width: 89%;">
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col s12">
+      <ul materialize='tabs' class="tabs tabs-fixed-width ">
+        <li class="tab col s3"><a href="#messages"  class="active" (click)="showMessages()">MESSAGES</a></li>
+        <li class="tab col s3"><a  href="#actifs" (click)="showActifs()">ACTIFS({{actifNb}})</a></li>
+        <li class="tab col s3 "><a href="#groups" (click)="showGroups()">GROUPS</a></li>
+      </ul>
+    </div>
+    <div id="messages" class="col s12" >
+
+      <div class="friend" *ngFor='let message of messages' (click) ="chat(message.id)">
+            <div>
+          <strong class="col-md-5">Subject: {{message.subject}}</strong>
+          <strong style="margin-left: 150px;" *ngFor="let meta of message.metadata"> {{meta.last_message_date | date:'mediumTime'}}</strong>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div id="actifs" class="col s12 ">
+      <div *ngIf="actifNb>0">
+      <div class="friend" *ngFor='let actif of actifs'>
+          <div *ngIf="localUser.username != actif.username">
+            <img src="http://lorempixel.com/500/500/people/1" />
+            <p>
+              <strong>{{actif.username}}</strong>
+
+            </p>
+            <div class="status available"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div id="groups" class="col s12">{{ groups  }}</div>
+
+    <a class="btn btn-floating btn-medium pulse red accent-2" style="float: right; position: fixed;margin-top: 66%; margin-left:-21%" (click)="go"><i class="material-icons">message</i></a>
+  </div>
+
+
+  </div>
+
+
+
+
+

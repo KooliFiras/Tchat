@@ -1,0 +1,51 @@
+.center-div
+{
+  top:50%;
+  left: 50%;
+  transform: translate3d(-50%,-50%, 0);
+  position: absolute;
+}
+.friend{
+  height:70px;
+  border-bottom:1px solid #e7ebee;
+  position:relative;
+}
+.friend:hover{
+  background:#f1f4f6;
+  cursor:pointer;
+}
+.friend img{
+  width:40px;
+  border-radius:50%;
+  margin:15px;
+  float:left;
+}
+
+.friend p strong{
+  font-weight:600;
+  font-size:15px;
+  color:#597a96;
+
+}
+
+.status{
+  background:#26c281;
+  border-radius:50%;
+  width:9px;
+  height:9px;
+  position:absolute;
+  top:31px;
+  right:17px;
+}
+
+
+.img-circle {
+  border-radius: 50%;
+}
+.img-responsive {
+  display: block;
+  height: 30px;
+  max-width:30px;
+}
+
+.file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */

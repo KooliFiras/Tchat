@@ -1,0 +1,59 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+
+        dev:
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/app
+            lexik_jwt: ~
+
+        api_register:
+            pattern: ^/api/users/register
+            anonymous: true
+
+        api_password_reset:
+            pattern: ^/api/users/password/reset
+            anonymous: true
+
+        api_login:
+            pattern:  ^/api/users/login
+            stateless: true
+            anonymous: true
+            form_login:
+                check_path:               /api/users/login
+                require_previous_session: false
+                username_parameter:       username
+                password_parameter:       password
+                success_handler:          lexik_jwt_authentication.handler.authentication_success
+                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+            logout: true
+
+
+        api:
+            pattern:   ^/api
+            stateless: true
+            lexik_jwt: ~
+
+
+    access_control:
+        - { path: ^/api/users/login$,             role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/users/register$,          role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/users/password/reset,     role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: ^/api/users/password/change$,   role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/messages,                 role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/,                             role: IS_AUTHENTICATED_FULLY }
+

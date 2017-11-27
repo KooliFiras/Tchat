@@ -1,0 +1,26 @@
+#services:
+#    activity_listener:
+#        class: UserBundle\Listener\ActivityListener
+#        arguments: ['@security.context', '@doctrine.entity_manager']
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.controller, method: onCoreController }
+
+services:
+
+    event.jwt_created_listener:
+        class: UserBundle\Event\Listener\JWTCreatedListener
+        arguments:
+            - "@security.token_storage"
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
+
+    user.mailer.rest:
+        class: UserBundle\Mailer\RestMailer
+        public: false
+        parent: fos_user.mailer.twig_swift
+
+    activity_listener:
+        class: UserBundle\Listener\ActivityListener
+        arguments: ["@security.token_storage", "@doctrine.orm.entity_manager"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onCoreController }

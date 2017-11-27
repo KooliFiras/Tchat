@@ -1,0 +1,45 @@
+<div class="center-div" style="margin-top:-10%;width:40%;">
+
+<nav >
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo" (click)="backClicked()"><i class="material-icons">arrow_back</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="#!"><i class="material-icons">notifications_active</i></a></li>
+      <li><a href="#!"><i class="material-icons">videocam</i></a></li>
+      <li><a href="#!"><i class="material-icons">info</i></a></li>
+    </ul>
+  </div>
+</nav>
+
+  <ul class="collection">
+
+    <li class="collection-item avatar" *ngFor="let message of discussion">
+      <div class="row" style="margin-left: -60px">
+        <img src="http://lorempixel.com/30/30/people" class="img-responsive img-circle" style="float:left" />
+        <strong style="float:left; margin-left:20px;">{{message.body}}</strong>
+      </div>
+    </li>
+
+  </ul>
+
+  <ul class="collection">
+
+    <li class="collection-item avatar">
+
+        <form class="col s10">
+          <div class="row">
+            <div class="input-field col s10" style="margin-left:-4em;">
+              <input id="message" type="text" class="validate" placeholder="Message">
+            </div>
+          </div>
+        </form>
+      <a href="#!" class="secondary-content" style="margin-top:40px;"><i class="material-icons" style="margin-left:-5em;">send</i></a>
+      <a href="#!" class="secondary-content "style="margin-top:40px;"><i class="material-icons" style="margin-left:-3.7em;">photo</i></a>
+      <a href="#!" class="secondary-content "style="margin-top:40px;"><i class="material-icons" style="margin-left:-2.3em;">camera_alt</i></a>
+      <a href="#!" class="secondary-content "style="margin-top:40px;"><i class="material-icons" style="margin-left:-0.5em;">keyboard_voice</i></a>
+    </li>
+
+  </ul>
+
+</div>
+

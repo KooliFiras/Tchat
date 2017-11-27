@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    Homepage.
+
+    <h1 id="subscribe"></h1>
+    <br>
+    <h2 id="rpc"></h2>
+
+    {{ ws_client() }}
+
+    <script type="text/javascript">
+
+        var _WS_URI = "ws://{{ gos_web_socket_server_host }}:{{ gos_web_socket_server_port }}";
+        var websocket = WS.connect(_WS_URI);
+
+        websocket.on("socket/connect", function(session){
+
+
+            session.subscribe("acme/channel", function(uri, payload){
+                    document.getElementById('subscribe').textContent=payload.msg;
+                    //console.log("Received message : ", payload.msg);
+             //   console.log('pusher test :',payload['my_data']);
+            });
+
+            session.call("sample/sum", {"term1": 2, "term2": 5}).then(
+                    function(result)
+                    {
+                       // console.log("RPC Valid!", result);
+                        document.getElementById('rpc').textContent= result;
+                    },
+                    function(error, desc)
+                    {
+                      //  console.log("RPC Error", error, desc);
+                        document.getElementById('rpc').textContent=error.concat( " ", desc);
+                    }
+            );
+
+          //  session.publish("acme/channel", {msg: "This is a message!"});
+
+        //    session.publish("acme/channel", {msg: "I'm leaving...."});
+
+        //    session.unsubscribe("acme/channel");
+
+        //    session.publish("acme/channel", {msg: "I won't see this"});
+
+        //    session.subscribe("acme/channel", function(uri, payload){
+         //       console.log("Received message", payload.msg);
+         //   });
+          //  session.publish("acme/channel", {msg: "I'm back!"});
+        });
+
+        websocket.on("socket/disconnect", function(error){
+            //error provides us with some insight into the disconnection: error.reason and error.code
+
+            console.log("Disconnected for " + error.reason + " with code " + error.code);
+        });
+    </script>
+{% endblock %}

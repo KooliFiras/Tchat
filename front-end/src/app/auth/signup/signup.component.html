@@ -1,0 +1,35 @@
+ <div>
+    <h5 class="center-align" >Signup</h5>
+    <div>
+      <h5 class="center-align" ></h5>
+    </div>
+    <div class="input-field " style="margin-top:7%;">
+      <i class="material-icons prefix">email</i>
+      <input id="user_email" type="email" class="validate" [(ngModel)]="localUser.email">
+      <label for="user_email">Email</label>
+    </div>
+
+    <div class="input-field" style="margin-top:7%;">
+      <i class="material-icons prefix">account_circle</i>
+      <input id="user_name" type="text" class="validate" [(ngModel)]="localUser.username">
+      <label for="user_name">Username</label>
+    </div>
+
+      <div class="input-field" style="margin-top:7%;">
+        <i class="material-icons prefix">security</i>
+        <input id="password_first" type="password" class="validate" [(ngModel)]="localUser.password_first">
+        <label for="password_first">Password</label>
+      </div>
+
+      <div class="input-field" style="margin-top:7%;">
+        <i class="material-icons prefix">security</i>
+        <input id="password_second" type="password" class="validate" [(ngModel)]="localUser.password_second">
+        <label for="password_second">Check password</label>
+      </div>
+    <div style="margin-top:7%;">
+      <button class="waves-effect waves-light btn" (click)="signup()" style="width: 48%;">Signup</button>
+      <button class="waves-effect waves-light btn" (click)="clearfields()"  style="width: 50%;">Clear</button>
+    </div>
+
+  </div>
+

@@ -1,0 +1,7 @@
+# app/config/services.yml
+services:
+
+    token_authenticator:
+        class: UserBundle\Security\TokenAuthenticator
+        arguments: ['@lexik_jwt_authentication.encoder', '@doctrine.orm.entity_manager']
+

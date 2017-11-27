@@ -1,0 +1,38 @@
+
+login:
+    type: rest
+    resource: UserBundle\Controller\LoginController
+    prefix: /api/users
+
+password_management:
+    type: rest
+    resource: UserBundle\Controller\PasswordManagementController
+    prefix: /api/users
+
+
+profile:
+    type: rest
+    resource: UserBundle\Controller\ProfileController
+    prefix: /api/users
+
+
+registration:
+    type: rest
+    resource: UserBundle\Controller\RegistrationController
+    prefix: /api/users
+
+rest:
+    resource: UserBundle\Controller\UserController
+    type: rest
+    prefix: /api/users
+
+message:
+    type: rest
+    resource: MessageBundle\Controller\MessageController
+    prefix: /api/messages
+
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+    prefix: /app
